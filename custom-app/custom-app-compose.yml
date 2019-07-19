@@ -1,8 +1,8 @@
 version: "3"
 services:
   registry:
-    image: localhost:5000/bitbucket:latest
-    container_name: bitbucket
+    image: localhost:5000/custom-app:latest
+    container_name: custom-app
     restart: always
     ports:
       - "7888:7888"
