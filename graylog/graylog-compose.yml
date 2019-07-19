@@ -1,0 +1,30 @@
+version: '3'
+services:
+  graylog:
+    image: graylog/graylog:3.0
+    volumes:
+      - graylog_journal:/usr/share/graylog/data/journal
+    environment:
+      # CHANGE ME (must be at least 16 characters)!
+      - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
+      # Password: admin
+      - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://192.168.1.42:9000/
+    extra_hosts:
+      - "dockerhost: current host"
+      - "mongo:mongoDB's host"
+      - "elasticsearch:ElasticSearch's Host"
+    ports:
+      # Graylog web interface and REST API
+      - 9000:9000
+      # Syslog TCP
+      - 1514:1514
+      # Syslog UDP
+      - 1514:1514/udp
+      # GELF TCP
+      - 12201:12201
+      # GELF UDP
+      - 12201:12201/udp
+volumes:
+  graylog_journal:
+    driver: local

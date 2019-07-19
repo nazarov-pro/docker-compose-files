@@ -1,0 +1,11 @@
+version: "3"
+services:
+  master_cache:
+    container_name: master_cache
+    image: memcached
+    ports:
+      - "11211:11211"
+    environment:
+      # Memcached memory limit in megabytes
+      - MEMCACHED_MEMORY_LIMIT=256
+ 

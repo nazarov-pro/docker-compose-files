@@ -1,0 +1,20 @@
+version: "3"
+services:
+  master_mq:
+    container_name: master_mq
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "mV52r7nA"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - master_mq_data:/var/lib/rabbitmq/mnesia/rabbit@master_mq:cached
+
+volumes:
+  master_mq_data:
+    driver: local
+

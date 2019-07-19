@@ -1,0 +1,21 @@
+version: "3"
+services:
+  registry:
+    image: registry:2.7.1
+    container_name: registry
+    restart: always
+    ports:
+      # - "5001:5001"
+      - "5000:5000"
+    volumes:
+      - ./data/registry/images:/var/lib/registry
+      - ./data/registry/certificates:/certs
+      - ./data/registry/auth:/auth
+    environment:
+      # - "REGISTRY_HTTP_TLS_CERTIFICATE=/certs/deamon.bettech.mt.crt"
+      # - "REGISTRY_HTTP_TLS_KEY=/certs/deamon.bettech.mt.key"
+      # - "REGISTRY_HTTP_DEBUG_ADDR=':5001'"
+      - "REGISTRY_AUTH=htpasswd"
+      - "REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd"
+      - "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm"
+    

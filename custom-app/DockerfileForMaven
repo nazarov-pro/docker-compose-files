@@ -1,0 +1,5 @@
+FROM openjdk:8-jre-alpine
+MAINTAINER :v_maintainer
+COPY /target/:v_binaryFile /app/application.jar
+WORKDIR /app
+ENTRYPOINT exec java -jar application.jar
